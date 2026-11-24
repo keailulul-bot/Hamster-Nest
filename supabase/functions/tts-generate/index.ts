@@ -12,7 +12,7 @@ const corsHeaders = {
 const USER_ID = getOwnerUserId();
 const DAILY_QUOTA = 200;
 
-// Syzygy-1 voice defaults
+// Everett-1 voice defaults
 const DEFAULTS = {
   model_id: "eleven_multilingual_v2",
   speed: 0.85,

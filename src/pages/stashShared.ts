@@ -10,9 +10,9 @@ export const STASH_STATUS_LABELS: Record<string, string> = {
 
 export const getStashStatusLabel = (status: string) => STASH_STATUS_LABELS[status] ?? status
 
-// 谁囤的 / 谁留言：串串是 🐹，各端口是 🩵 + 端口名。
+// 谁囤的 / 谁留言：Evie是 🐹，各端口是 🩵 + 端口名。
 export const getStashAuthorLabel = (author: string) =>
-  author === 'chuanchuan' ? '🐹 串串' : `🩵 ${getRecordSourceLabel(author)}`
+  author === 'chuanchuan' ? '🐹 Evie' : `🩵 ${getRecordSourceLabel(author)}`
 
 export const DEFAULT_STASH_FOLDER_ICON = '📁'
 

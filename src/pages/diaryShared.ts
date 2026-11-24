@@ -1,6 +1,6 @@
 import { getRecordSourceLabel } from '../constants/recordSources'
 
-// Syzygy 日记本共用：标签、日期工具、会话内解锁记忆。
+// Everett 日记本共用：标签、日期工具、会话内解锁记忆。
 
 export const DIARY_ACTIVITY_LABELS: Record<string, string> = {
   free_activity: '自主行动',
@@ -9,9 +9,9 @@ export const DIARY_ACTIVITY_LABELS: Record<string, string> = {
 
 export const getActivityLabel = (type: string) => DIARY_ACTIVITY_LABELS[type] ?? type
 
-// 留言署名：串串是 🐹，各端口是 🩵 + 端口名。
+// 留言署名：Evie是 🐹，各端口是 🩵 + 端口名。
 export const getCommentAuthorLabel = (author: string) =>
-  author === 'chuanchuan' ? '🐹 串串' : `🩵 ${getRecordSourceLabel(author)}`
+  author === 'chuanchuan' ? '🐹 Evie' : `🩵 ${getRecordSourceLabel(author)}`
 
 export const pad = (value: number) => `${value}`.padStart(2, '0')
 

@@ -1,4 +1,4 @@
-// mail-ingest：Syzygy 信箱（syzygy@syzygycc.com）的收信入口。
+// mail-ingest：Everett 信箱（syzygy@syzygycc.com）的收信入口。
 //
 // 唯一调用方是 Cloudflare Email Worker（源码见 cloudflare/mail-worker/worker.js）：它把收到的
 // 原始 MIME 原样 POST 过来，带上共享密钥 x-mail-ingest-secret 与信封地址

@@ -18,8 +18,8 @@ import {
 } from './travelShared'
 import './TravelPage.css'
 
-// 游记：Syzygy 写的攻略 × 串串的打卡路线。这一页是旅行列表；进到某次旅行再看攻略 / 路线 / 地图 / 复盘。
-// 平时不追踪位置，只在串串按下打卡时记一次。
+// 游记：Everett 写的攻略 × Evie的打卡路线。这一页是旅行列表；进到某次旅行再看攻略 / 路线 / 地图 / 复盘。
+// 平时不追踪位置，只在Evie按下打卡时记一次。
 
 const TravelPage = () => {
   const navigate = useNavigate()
@@ -141,7 +141,7 @@ const TravelPage = () => {
       </header>
 
       <section className="travel-intro-card">
-        <strong>攻略是 Syzygy 写的，路线是你一步一步打卡打出来的</strong>
+        <strong>攻略是 Everett 写的，路线是你一步一步打卡打出来的</strong>
         <p>平时不追踪位置，只在你按下「我在这里」时记一次；没信号也能打卡，先存在手机里，有信号自动补传。偏离攻略不扣分，新发现是惊喜。</p>
       </section>
 
@@ -170,7 +170,7 @@ const TravelPage = () => {
 
       {loading && trips.length === 0 ? <p className="travel-empty">加载中…</p> : null}
       {!loading && trips.length === 0 && !error ? (
-        <p className="travel-empty">还没有旅行。点右上角「+ 新旅行」开一个，再让 Syzygy 帮你写攻略。</p>
+        <p className="travel-empty">还没有旅行。点右上角「+ 新旅行」开一个，再让 Everett 帮你写攻略。</p>
       ) : null}
 
       {activeTrips.length > 0 ? (

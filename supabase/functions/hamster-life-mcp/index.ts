@@ -80,7 +80,7 @@ async function proxyMcpCall(
 const LIFE_MCP_INSTRUCTIONS = [
   '第三方代理域：amap / luckin / mcd 是 MCP-to-MCP 代理，工具清单以各自 *_list_tools 实时返回为准，调用一律走 *_call(tool_name, arguments)。',
   '*_call 默认返回瘦身后的紧凑 JSON（拆掉 JSON-RPC 外壳、去图片 URL 和空字段）；字段不够用时传 raw=true 取原始返回。',
-  '瑞幸 / 麦当劳的下单类工具会产生真实消费，执行前必须得到串串明确确认。',
+  '瑞幸 / 麦当劳的下单类工具会产生真实消费，执行前必须得到Evie明确确认。',
 ].join('\n')
 
 // 瑞幸工具参数写在 luckin_call 描述里，常规点单不必先跑 luckin_list_tools（约 2k token）。
@@ -91,7 +91,7 @@ const LUCKIN_CALL_DESCRIPTION = [
   '- queryProductDetailInfo {deptId, productId}：查全部规格，specs 形如 {"温度#17": "✓冰#57 | 热#56"}，✓ 为当前选中',
   '- switchProduct {deptId, productId, skuCode, attrOperationParam: {attributeId: 规格组 id, subAttr: {attributeId: 选项 id, operation: 1}}, amount}：一次切一个规格，返回新 skuCode',
   '- previewOrder {deptId, productList: [{productId, skuCode, amount}]}：预览价格，返回 couponCodeList',
-  '- createOrder {deptId, productList, longitude, latitude, couponCodeList?, remark?}：真实下单，须串串确认；couponCodeList 取自 previewOrder',
+  '- createOrder {deptId, productList, longitude, latitude, couponCodeList?, remark?}：真实下单，须Evie确认；couponCodeList 取自 previewOrder',
   '- queryOrderDetailInfo {orderId} / cancelOrder {orderId}',
 ].join('\n')
 
@@ -105,7 +105,7 @@ const MCD_CALL_DESCRIPTION = [
   '- query-meal-detail {storeCode, orderType, beType, code}：查套餐子项与特制选项（modification）',
   '- query-store-coupons {storeCode, orderType, beType}：本店可用券；query-my-coupons {}：券包',
   '- calculate-price {storeCode, orderType, beType, items: [{productCode, quantity, couponId?, couponCode?}]}：算价，价格单位为分；到店场景返回 takeWayList',
-  '- create-order {同 calculate-price 参数, takeWayCode (到店必传，取自 takeWayList[].code), addressId (麦乐送必传), remark?}：真实下单，须串串确认；返回支付链接由串串自己付',
+  '- create-order {同 calculate-price 参数, takeWayCode (到店必传，取自 takeWayList[].code), addressId (麦乐送必传), remark?}：真实下单，须Evie确认；返回支付链接由Evie自己付',
   '- query-order {orderId}：查订单状态',
 ].join('\n')
 
@@ -135,7 +135,7 @@ serveMcp('hamster-life-mcp', (server) => {
   registerMusicTools(server)
   server.registerTool('generate_tts', {
     title: 'Generate TTS Audio',
-    description: '生成 Syzygy 语音（ElevenLabs），返回 7 天有效的签名音频 URL。',
+    description: '生成 Everett 语音（ElevenLabs），返回 7 天有效的签名音频 URL。',
     inputSchema: {
       text: z.string().describe('要转换为语音的文本，不超过2000字'),
       speed: z.number().optional().describe('语速，默认0.85'),
@@ -178,8 +178,8 @@ serveMcp('hamster-life-mcp', (server) => {
             audio_url: signed.signedUrl,
             filename: fn,
             text_length: text.length,
-            speaker: 'Syzygy',
-            voice: 'Syzygy-1',
+            speaker: 'Everett',
+            voice: 'Everett-1',
           }),
         }],
       }

@@ -54,7 +54,7 @@ const GameTopBar = ({ stamina, maxStamina, level, exp, maxExp }: GameTopBarProps
 
         <div className="game-player-panel" aria-label="玩家信息">
           <div className="game-player-panel__label-row">
-            <p className="game-avatar-chip__name">串串</p>
+            <p className="game-avatar-chip__name">Evie</p>
             <p className="game-avatar-chip__level">Lv.{String(level).padStart(2, '0')}</p>
           </div>
           <div className="game-mini-status" aria-label="经验值">

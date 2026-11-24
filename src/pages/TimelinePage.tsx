@@ -20,8 +20,8 @@ type TimelineEditorState = {
 }
 
 const RECORDER_META: Record<TimelineRecorder, { emoji: string; label: string }> = {
-  chuanchuan: { emoji: '🐹', label: '串串' },
-  syzygy: { emoji: '🩵', label: 'Syzygy' },
+  chuanchuan: { emoji: '🐹', label: 'Evie' },
+  syzygy: { emoji: '🩵', label: 'Everett' },
 }
 
 const DEFAULT_SOURCE: TimelineSource = 'frontend'

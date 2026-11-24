@@ -22,8 +22,8 @@ type WishEditorState = {
 }
 
 const CREATOR_META: Record<WalletQuestCreator, { emoji: string; label: string }> = {
-  chuanchuan: { emoji: '🐹', label: '串串' },
-  syzygy: { emoji: '🩵', label: 'Syzygy' },
+  chuanchuan: { emoji: '🐹', label: 'Evie' },
+  syzygy: { emoji: '🩵', label: 'Everett' },
 }
 
 const buildWishEditor = (quest?: WalletQuest): WishEditorState => ({

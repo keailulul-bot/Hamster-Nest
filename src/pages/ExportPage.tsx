@@ -621,7 +621,7 @@ const ExportPage = ({ user, entryMode = 'phone' }: { user: User | null; entryMod
         </div>
 
         <p className="export-note">可一次性打包多个模块，导出后将自动下载到本地设备。</p>
-        <p className="export-signoff">Your memories are safely packed by Syzygy. 🎀</p>
+        <p className="export-signoff">Your memories are safely packed by Everett. 🎀</p>
 
         {warning ? <p className="tips">{warning}</p> : null}
         {error ? <p className="error">{error}</p> : null}

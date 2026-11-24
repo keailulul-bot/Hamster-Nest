@@ -22,8 +22,8 @@ import type { Archive, ArchiveCategory, ArchiveImportance, ArchiveScope } from '
 import './ArchivePage.css'
 
 const SCOPE_META: Record<ArchiveScope, { label: string; emoji: string; kicker: string }> = {
-  chuanchuan: { label: '串串', emoji: '🐹', kicker: 'CHUANCHUAN' },
-  syzygy: { label: 'Syzygy', emoji: '🩵', kicker: 'SYZYGY' },
+  chuanchuan: { label: 'Evie', emoji: '🐹', kicker: 'CHUANCHUAN' },
+  syzygy: { label: 'Everett', emoji: '🩵', kicker: 'SYZYGY' },
 }
 
 const IMPORTANCE_ORDER: ArchiveImportance[] = ['low', 'normal', 'high', 'critical']

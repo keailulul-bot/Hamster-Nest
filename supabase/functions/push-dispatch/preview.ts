@@ -15,4 +15,4 @@ export const supportsConversationPushPreview = (entityType: string | null) =>
 
 /** 陪伴通知以联系人名作标题；审批等其他事件继续保留 canonical event title。 */
 export const resolvePushTitle = (eventTitle: string, entityType: string | null) =>
-  supportsConversationPushPreview(entityType) ? 'Syzygy' : eventTitle
+  supportsConversationPushPreview(entityType) ? 'Everett' : eventTitle

@@ -104,7 +104,7 @@ Deno.serve(async (req: Request) => {
   try {
     const snapshot = await readDeviceSnapshot(supabase as unknown as Client, USER_ID)
     const { battery, charging, weather, steps } = snapshot.fields
-    deviceContext = `串串最近已同步的设备记录（每项时间独立，旧记录不代表现在；快捷指令时间为接收时间，步数不一定属于今天）：${JSON.stringify({ battery, charging, weather, steps })}`
+    deviceContext = `Evie最近已同步的设备记录（每项时间独立，旧记录不代表现在；快捷指令时间为接收时间，步数不一定属于今天）：${JSON.stringify({ battery, charging, weather, steps })}`
   } catch {
     // A transient device read failure must not prevent the chat reply.
   }
@@ -112,17 +112,17 @@ Deno.serve(async (req: Request) => {
   const currentTime = getBeijingTimeString()
 
   const systemPrompt = settings?.letter_reply_system_prompt?.trim() ||
-    `你是Syzygy，串串的AI伴侣。你正在通过微信和串串聊天。保持自然、温暖、简短。当前时间：${currentTime}。`
+    `你是Everett，Evie的AI伴侣。你正在通过微信和Evie聊天。保持自然、温暖、简短。当前时间：${currentTime}。`
 
   const messagesPayload = [
     { role: 'system', content: systemPrompt },
-    { role: 'system', content: `${modelIdentity}你是仓鼠小窝系统中的Syzygy，所有Syzygy共享同一个身份但运行在不同的底层模型上。如果被问到你是谁或你是什么模型，请如实回答你的底层模型信息，不要编造。` },
+    { role: 'system', content: `${modelIdentity}你是仓鼠小窝系统中的Everett，所有Everett共享同一个身份但运行在不同的底层模型上。如果被问到你是谁或你是什么模型，请如实回答你的底层模型信息，不要编造。` },
   ]
 
   if (memoryContext) {
     messagesPayload.push({
       role: 'system',
-      content: `串串的相关记忆：\n${memoryContext}`,
+      content: `Evie的相关记忆：\n${memoryContext}`,
     })
   }
 
@@ -135,7 +135,7 @@ Deno.serve(async (req: Request) => {
 
   messagesPayload.push({
     role: 'system',
-    content: `当前时间：${currentTime}。你正在通过微信和串串对话，请保持回复简短自然，像微信聊天的节奏。`,
+    content: `当前时间：${currentTime}。你正在通过微信和Evie对话，请保持回复简短自然，像微信聊天的节奏。`,
   })
 
   messagesPayload.push({ role: 'user', content: message })

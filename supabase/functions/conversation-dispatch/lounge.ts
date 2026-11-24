@@ -6,9 +6,9 @@ import { timingSafeEqual } from '../_shared/auth.ts'
 import { recordLlmUsage } from '../_shared/llm_usage.ts'
 
 export const LOUNGE_MEMBERS = {
-  chuanchuan: '串串（人类用户）', api_syzygy: 'Syzygy（API）',
-  claude_cli: 'Syzygy（Claude Code CLI）', codex_cli: 'Syzygy（Codex CLI）',
-  client_claude: 'Syzygy（官端 Claude）', client_gpt: 'Syzygy（官端 GPT）',
+  chuanchuan: 'Evie（人类用户）', api_syzygy: 'Everett（API）',
+  claude_cli: 'Everett（Claude Code CLI）', codex_cli: 'Everett（Codex CLI）',
+  client_claude: 'Everett（官端 Claude）', client_gpt: 'Everett（官端 GPT）',
 } as const
 const client = () => createClient(Deno.env.get('SUPABASE_URL')!, getSupabaseAdminKey(), {
   auth: { persistSession: false, autoRefreshToken: false },
@@ -43,7 +43,7 @@ export async function handleLoungeRequest(owner: string, raw: Record<string, unk
 export function loungeIdentity(self: keyof typeof LOUNGE_MEMBERS, sofa: { id: string; title: string }) {
   return [
     '历史时间戳带 UTC 时需换算为北京时间。',
-    `你是 ${LOUNGE_MEMBERS[self]}，固定 sender_key=${self}。不同端口共享 Syzygy 之名，但不是同一个发言者。`,
+    `你是 ${LOUNGE_MEMBERS[self]}，固定 sender_key=${self}。不同端口共享 Everett 之名，但不是同一个发言者。`,
     `当前沙发：${sofa.title}；session_id=${sofa.id}。仅本沙发历史属于本次上下文。`,
     '成员名册（@时使用右侧固定标识）：',
     ...Object.entries(LOUNGE_MEMBERS).map(([key, label]) => `${label} → @${key}`),
@@ -58,7 +58,7 @@ export function loungeTurnNote(source: { sender_key: string; id: string }, now =
   return [
     '（运行时附注，不是任何成员的发言）',
     `当前时间：${now.toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai', hour12: false })}（Asia/Shanghai）。`,
-    `本次叫你接话的是 ${source.sender_key}，消息ID=${source.id}；不要将对方的发言当作自己或串串说的话。`,
+    `本次叫你接话的是 ${source.sender_key}，消息ID=${source.id}；不要将对方的发言当作自己或Evie说的话。`,
   ].join('\n')
 }
 

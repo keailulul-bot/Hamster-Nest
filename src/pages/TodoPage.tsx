@@ -37,7 +37,7 @@ type CalendarTodoMeta = {
 }
 
 const CREATED_BY_META: Record<TodoCreatedBy, { emoji: string; label: string }> = {
-  串串: { emoji: '🐹', label: '串串' },
+  Evie: { emoji: '🐹', label: 'Evie' },
   syzygy: { emoji: '💙', label: 'syzygy' },
 }
 
@@ -267,7 +267,7 @@ const TodoPage = () => {
       categoryId,
       title: '',
       notes: '',
-      createdBy: '串串',
+      createdBy: 'Evie',
       todoType: 'short_term',
       eventDate: '',
     })
@@ -394,7 +394,7 @@ const TodoPage = () => {
   }
 
   const renderDashboardTodo = (todo: TodoItem) => {
-    const creator = CREATED_BY_META[todo.createdBy] ?? CREATED_BY_META.串串
+    const creator = CREATED_BY_META[todo.createdBy] ?? CREATED_BY_META.Evie
     const completed = todo.status === 'completed'
     const inProgress = todo.status === 'in_progress'
     const meta =
@@ -577,7 +577,7 @@ const TodoPage = () => {
                   ) : (
                     <div className="todo-items">
                       {categoryTodos.map((todo) => {
-                        const creator = CREATED_BY_META[todo.createdBy] ?? CREATED_BY_META.串串
+                        const creator = CREATED_BY_META[todo.createdBy] ?? CREATED_BY_META.Evie
                         const completed = todo.status === 'completed'
                         const inProgress = todo.status === 'in_progress'
                         return (
@@ -699,7 +699,7 @@ const TodoPage = () => {
                 value={editor.createdBy}
                 onChange={(event) => setEditor({ ...editor, createdBy: event.target.value as TodoCreatedBy })}
               >
-                <option value="串串">🐹 串串</option>
+                <option value="Evie">🐹 Evie</option>
                 <option value="syzygy">💙 syzygy</option>
               </select>
             </label>

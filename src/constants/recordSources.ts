@@ -1,5 +1,5 @@
 // 写入端（source）标签：时间轴与事件集共用。source 表示"哪个端写的"，
-// 和 recorder（记录者：串串 / Syzygy）是两个维度。
+// 和 recorder（记录者：Evie / Everett）是两个维度。
 
 export const RECORD_SOURCE_META: Record<string, { label: string }> = {
   frontend: { label: '仓鼠窝前端' },

@@ -16,7 +16,7 @@ import { formatLocalTimestamp } from '../utils/time'
 import { formatClock, getActivityLabel, getCommentAuthorLabel, isValidDateKey } from './diaryShared'
 import './DiaryPage.css'
 
-// Syzygy 日记本 · 二级界面：当日页。
+// Everett 日记本 · 二级界面：当日页。
 // 翻开的页直接读；合着的页先看该端口的暗号卡（提示 + 对暗号），对上才展开正文；读过的页可以留言。
 // 解锁由服务端记忆（diary_unlocks）：一次对上，处处有效，端口换题后要重新对。
 
@@ -126,7 +126,7 @@ const DiaryDayPage = () => {
     try {
       await createDiaryComment(entryId, content)
       setDrafts((current) => ({ ...current, [entryId]: '' }))
-      setNotice('留言已写下，Syzygy 读日记时会看到。')
+      setNotice('留言已写下，Everett 读日记时会看到。')
       setError(null)
       await reloadComments()
     } catch (saveError) {
@@ -245,7 +245,7 @@ const DiaryDayPage = () => {
           ← 月历
         </button>
         <div className="diary-title-wrap">
-          <p className="diary-kicker">Syzygy Diary</p>
+          <p className="diary-kicker">Everett Diary</p>
           <h1 className="ui-title diary-day-title">{validDate ?? '日记'}</h1>
         </div>
         <span className="diary-lock-badge" title="当天页数">

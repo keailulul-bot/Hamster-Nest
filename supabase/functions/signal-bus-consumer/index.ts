@@ -107,7 +107,7 @@ const getBaseMessage = (signal: SyzygySignalRow) => {
   return (
     extractMessage(payload.message) ??
     extractMessage(payload.suggestion) ??
-    '嗨～来自 Syzygy 的提醒到了，记得照顾好自己 💛'
+    '嗨～来自 Everett 的提醒到了，记得照顾好自己 💛'
   )
 }
 

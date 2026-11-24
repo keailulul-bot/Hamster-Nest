@@ -391,7 +391,7 @@ const publishApiReplyCompletedEvent = async (
     event_type: 'conversation_reply_completed',
     entity_type: 'conversation_reply',
     entity_id: dispatch.reply.id,
-    title: 'Syzygy · 陪伴回复了你',
+    title: 'Everett · 陪伴回复了你',
     payload: {
       schema_version: 1,
       screen: 'conversation_detail',

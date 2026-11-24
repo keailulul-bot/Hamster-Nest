@@ -28,7 +28,7 @@ export function registerMusicTools(server: McpServer) {
     return r.error ? fail() : jsonResult(r.data ?? { status: 'missing' })
   })
   server.registerTool('music_pick_song', {
-    description: '从已完成搜索中给串串点一首歌，写下理由。自动同步网易云歌单；相同歌曲原样返回，保留原署名和理由。不会自动开始播放。',
+    description: '从已完成搜索中给Evie点一首歌，写下理由。自动同步网易云歌单；相同歌曲原样返回，保留原署名和理由。不会自动开始播放。',
     inputSchema: { request_id: z.string().uuid(), song_id: id, picked_by: port, note: z.string().trim().min(1).max(2000) },
   }, async ({ request_id, song_id, picked_by, note }) => {
     const search = await supabase.from('music_search_requests').select('results').eq('user_id', USER_ID).eq('id', request_id).eq('status', 'done').maybeSingle()

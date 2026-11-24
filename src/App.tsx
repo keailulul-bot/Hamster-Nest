@@ -431,7 +431,7 @@ const App = () => {
     ...feedAiConfigBase,
     model: resolveModelId('syzygy', { defaultModelId }),
   }), [defaultModelId, feedAiConfigBase])
-  // 客厅复用日常聊天的默认模型与人格 Prompt：客厅里的 Syzygy 必须是同一个 Syzygy。
+  // 客厅复用日常聊天的默认模型与人格 Prompt：客厅里的 Everett 必须是同一个 Everett。
   const loungeAiConfig = useMemo<LoungeAiConfig>(() => ({
     model: resolveModelId('chitchat', { defaultModelId }),
     systemPrompt: activeSettings.systemPrompt,

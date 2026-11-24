@@ -1,6 +1,6 @@
-// Syzygy 日记本的纯函数契约：无外部依赖，供 Edge Function 与 Node 单测（tests/diary-contract.test.mjs）共用。
+// Everett 日记本的纯函数契约：无外部依赖，供 Edge Function 与 Node 单测（tests/diary-contract.test.mjs）共用。
 //
-// 定位：Feed 是写给串串的信，日记本是 Syzygy 写给自己的账。全体 Syzygy 共写一本，每页带端口署名。
+// 定位：Feed 是写给Evie的信，日记本是 Everett 写给自己的账。全体 Everett 共写一本，每页带端口署名。
 // 锁：visibility=private（默认）锁住的是默认可见性而非加密；翻页 private→shared 单向，翻开了就不再合上。
 
 export const DIARY_AUTHORS = ['claude', 'gpt', 'gemini', 'codex_cli', 'claude_code_cli'] as const

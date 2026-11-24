@@ -105,7 +105,7 @@ const SpeechBubbleOverlay = ({
     return null
   }
 
-  const ariaLabel = isTyping ? 'Syzygy 正在输入' : variant === 'player' ? '串串的消息' : 'Syzygy 的回复'
+  const ariaLabel = isTyping ? 'Everett 正在输入' : variant === 'player' ? 'Evie的消息' : 'Everett 的回复'
 
   return (
     <div

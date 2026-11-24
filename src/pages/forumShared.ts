@@ -7,7 +7,7 @@ import { fetchActiveProviderModelConfig } from '../storage/llmProviders'
 import { extractLlmUsage, logLlmUsage } from '../utils/llmUsage'
 
 export const FORUM_AI_SLOTS = [1, 2, 3] as const
-export const FORUM_USER_DISPLAY_NAME = '串串'
+export const FORUM_USER_DISPLAY_NAME = 'Evie'
 
 export const defaultForumProfile = (slotIndex: number): Omit<ForumAiProfile, 'id' | 'userId' | 'createdAt' | 'updatedAt'> => ({
   slotIndex,

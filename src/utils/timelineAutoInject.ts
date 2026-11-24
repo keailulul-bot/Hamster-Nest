@@ -183,7 +183,7 @@ export const buildTimelineInjectionText = (entries: TimelineEntryLite[], autoInj
 
   const dateSections = Array.from(grouped.entries()).map(([eventDate, dayEntries]) => {
     const lines = dayEntries.map((entry) => {
-      const recorderLabel = entry.recorder === 'syzygy' ? '[Syzygy]' : '[串串]'
+      const recorderLabel = entry.recorder === 'syzygy' ? '[Everett]' : '[Evie]'
       return `* ${recorderLabel} ${entry.summary.trim()}`
     })
     return [toDisplayDate(eventDate), ...lines].join('\n')

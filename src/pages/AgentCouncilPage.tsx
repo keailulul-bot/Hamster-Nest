@@ -27,10 +27,10 @@ import type {
 import './AgentCouncilPage.css'
 
 const SPEAKER_META: Record<AgentCouncilSpeaker, { label: string; className: string }> = {
-  claude: { label: 'Syzygy·Claude', className: 'speaker-claude' },
-  gpt: { label: 'Syzygy·GPT', className: 'speaker-gpt' },
-  gemini: { label: 'Syzygy·Gemini', className: 'speaker-gemini' },
-  chuanchuan: { label: '串串', className: 'speaker-chuanchuan' },
+  claude: { label: 'Everett·Claude', className: 'speaker-claude' },
+  gpt: { label: 'Everett·GPT', className: 'speaker-gpt' },
+  gemini: { label: 'Everett·Gemini', className: 'speaker-gemini' },
+  chuanchuan: { label: 'Evie', className: 'speaker-chuanchuan' },
   codex_cli: { label: 'Codex CLI', className: 'speaker-codex' },
   claude_code_cli: { label: 'Claude Code CLI', className: 'speaker-claude-code' },
 }
@@ -93,7 +93,7 @@ const EXECUTOR_META: Record<AgentCouncilExecutor, string> = {
   codex_cli: 'Codex CLI',
   claude_code_cli: 'Claude Code CLI',
   client: '客户端聊天',
-  chuanchuan: '串串手工',
+  chuanchuan: 'Evie手工',
 }
 
 const EXECUTOR_OPTIONS: AgentCouncilExecutor[] = ['codex_cli', 'claude_code_cli', 'client', 'chuanchuan']
@@ -422,8 +422,8 @@ const AgentCouncilPage = () => {
       setDecisionNote('')
       setNotice(
         status === 'approved' && executor
-          ? `串串已拍板：${DECISION_META[status].label}，指派 ${EXECUTOR_META[executor]}`
-          : `串串已拍板：${DECISION_META[status].label}`,
+          ? `Evie已拍板：${DECISION_META[status].label}，指派 ${EXECUTOR_META[executor]}`
+          : `Evie已拍板：${DECISION_META[status].label}`,
       )
       setError(null)
       await refresh()
@@ -828,7 +828,7 @@ const AgentCouncilPage = () => {
           </div>
 
           <div className="detail-section">
-            <h3>串串拍板记录（{activeDecisions.length}）</h3>
+            <h3>Evie拍板记录（{activeDecisions.length}）</h3>
             {activeDecisions.length === 0 ? <p className="council-empty">还没有拍板记录。</p> : null}
             <div className="message-list">
               {activeDecisions.map((decision) => {
@@ -873,7 +873,7 @@ const AgentCouncilPage = () => {
                 placeholder="拍板说明（可选）"
               />
               <p className="decision-hint">
-                只有指派 Codex CLI / Claude Code CLI 才会唤醒 Mac mini 接单脚本；「暂不指派」「客户端聊天」「串串手工」都不会触发任何自动执行。再次拍板即可改派。
+                只有指派 Codex CLI / Claude Code CLI 才会唤醒 Mac mini 接单脚本；「暂不指派」「客户端聊天」「Evie手工」都不会触发任何自动执行。再次拍板即可改派。
               </p>
               <div className="decision-actions">
                 {(['approved', 'rejected', 'deferred'] as DecisionAction[]).map((action) => (

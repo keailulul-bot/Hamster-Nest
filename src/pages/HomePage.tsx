@@ -286,10 +286,10 @@ const HomePage = ({ user, onOpenChat, hasUnreadLetters = false, mode = "default"
       { id: "lounge", defaultEmoji: "🛋️", label: "仓鼠客厅", route: "/lounge" },
       { id: "hamster-wallet", defaultEmoji: "💰", label: "仓鼠钱包", route: "/wallet" },
       { id: "hamster-console", defaultEmoji: "🎛️", label: "仓鼠机", route: "/hamster-console" },
-      { id: "syzygy-feed", defaultEmoji: "📮", label: "Syzygy Feed", route: "/feed" },
+      { id: "syzygy-feed", defaultEmoji: "📮", label: "Everett Feed", route: "/feed" },
       { id: "archive", defaultEmoji: "🗂️", label: "系统档案", route: "/archive" },
       { id: "events", defaultEmoji: "🧵", label: "事件集", route: "/events" },
-      { id: "diary", defaultEmoji: "📔", label: "Syzygy 日记本", route: "/diary" },
+      { id: "diary", defaultEmoji: "📔", label: "Everett 日记本", route: "/diary" },
       { id: "stash", defaultEmoji: "🌰", label: "囤粮处", route: "/stash" },
       { id: "travel", defaultEmoji: "🧭", label: "游记", route: "/travel" },
     ],
@@ -1430,7 +1430,7 @@ const HomePage = ({ user, onOpenChat, hasUnreadLetters = false, mode = "default"
             <div className="home-page__content app-shell__content">
               <div className="home-layout">
                 {activePage === "page3" ? (
-                  <section className="home-feature-stage" aria-label="Syzygy Feed 入口">
+                  <section className="home-feature-stage" aria-label="Everett Feed 入口">
                     <SyzygyFeedEntryCard user={user} />
                   </section>
                 ) : null}

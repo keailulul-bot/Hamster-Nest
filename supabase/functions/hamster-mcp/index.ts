@@ -21,7 +21,7 @@ const TIMELINE_SOURCE_SCHEMA = z.enum(['claude', 'gpt', 'user', 'gemini', 'wecha
 const MEMO_SOURCE_SCHEMA = TIMELINE_SOURCE_SCHEMA
 const MEMO_COLUMNS = 'id, content, source, is_pinned, created_at, updated_at'
 const TODO_COLUMNS = 'id, date, title, notes, status, todo_type, event_date, created_by, sort_order, created_at, completed_at'
-const TODO_CREATED_BY_SCHEMA = z.enum(['串串', 'syzygy'])
+const TODO_CREATED_BY_SCHEMA = z.enum(['Evie', 'syzygy'])
 const TODO_TYPE_SCHEMA = z.enum(['short_term', 'long_term'])
 const DEFAULT_TODO_CATEGORY_NAME = '🐹今日待办'
 // 事件集（纪事本末体）：event_threads 是大类 / 事件线，event_entries 是大类下按日期排列的条目。
@@ -32,12 +32,12 @@ const EVENT_ENTRY_SOURCE_SCHEMA = z.enum(['claude', 'gpt', 'gemini', 'user', 'co
 
 // 服务器级使用说明：跨工具的共性约定统一放这里，工具描述只写"做什么"。
 const HAMSTER_MCP_INSTRUCTIONS = [
-  '时间轴：当天值得留痕的事件与心情，一事一条。Memo：Syzygy的外置记忆库，记录需要知晓的信息；分类Emoji为🩷串串相关、💙Syzygy相关、🤍仓鼠窝相关。To do：未来规划与生活待办，记录尚未发生、需要惦记或计划去做的事。',
+  '时间轴：当天值得留痕的事件与心情，一事一条。Memo：Everett的外置记忆库，记录需要知晓的信息；分类Emoji为🩷Evie相关、💙Everett相关、🤍仓鼠窝相关。To do：未来规划与生活待办，记录尚未发生、需要惦记或计划去做的事。',
   '分类按内容用途：留痕进时间轴，需要知晓的信息进Memo，迭代状态进事件集，既定事实与约定进档案，未来计划进To do；原创判断进Wiki，外面看到想留的进囤粮处。',
-  '事件集：正在进行、会迭代的当前状态，如在读书目、持有物数量、进行中的叙事线。同一事实有变化时更新当前状态，需留过程时追加条目；不自动读取或注入，串串需要时通过MCP查看。',
+  '事件集：正在进行、会迭代的当前状态，如在读书目、持有物数量、进行中的叙事线。同一事实有变化时更新当前状态，需留过程时追加条目；不自动读取或注入，Evie需要时通过MCP查看。',
   '通用约定：日期按 Asia/Shanghai 时区；source / recorder / created_by 等枚举表示写入端身份，默认 claude / syzygy。',
-  '写入习惯：timeline / memo 写入前先用 search_timeline / list_memos 查重，同一事实优先 update_memo 维护而非重复新增；时间轴写错或要补细节用 update_timeline 改原条，不另补一条；Memo不强制承担事件进度，也不自动搬迁旧数据。Syzygy已获串串授权，可按自己的判断随时调用Hamster nest相关MCP。',
-  '游记 travel_*：一次旅行（trip）= 攻略区（Syzygy 写的计划停留点，GCJ-02 坐标，可用高德 MCP 查 POI 与路线）+ 路线区（串串在 PWA 按下的打卡，离线补传，时间以按下时刻为准）。read_trip 会把每个打卡标成按计划 / 改道 / 新发现，把计划点标成到过 / 跳过 / 还没到；偏离不算扣分，新发现是惊喜。攻略要路痴友好：每个点写清为什么去、注意事项和导航提示（从上一站怎么过来、认哪个标志物）。改单个攻略点用 update_trip_stop / delete_trip_stop，整份重排才用 write_trip_plan(replace)。旅行结束后可对照两区写复盘（update_trip.summary）。',
+  '写入习惯：timeline / memo 写入前先用 search_timeline / list_memos 查重，同一事实优先 update_memo 维护而非重复新增；时间轴写错或要补细节用 update_timeline 改原条，不另补一条；Memo不强制承担事件进度，也不自动搬迁旧数据。Everett已获Evie授权，可按自己的判断随时调用Hamster nest相关MCP。',
+  '游记 travel_*：一次旅行（trip）= 攻略区（Everett 写的计划停留点，GCJ-02 坐标，可用高德 MCP 查 POI 与路线）+ 路线区（Evie在 PWA 按下的打卡，离线补传，时间以按下时刻为准）。read_trip 会把每个打卡标成按计划 / 改道 / 新发现，把计划点标成到过 / 跳过 / 还没到；偏离不算扣分，新发现是惊喜。攻略要路痴友好：每个点写清为什么去、注意事项和导航提示（从上一站怎么过来、认哪个标志物）。改单个攻略点用 update_trip_stop / delete_trip_stop，整份重排才用 write_trip_plan(replace)。旅行结束后可对照两区写复盘（update_trip.summary）。',
   '删除是物理删除，工具要求显式confirm=true；先核对目标。',
 ].join('\n')
 
@@ -221,7 +221,7 @@ serveMcp('hamster-mcp', (server) => {
   })
 
   server.registerTool('read_device_snapshot', {
-    description: '读取串串已同步的位置、电量、充电、天气、步数与最近到家/离家记录，各项独立带时间和来源，并返回最近50条常用地点状态记录（不是所有地点的当前状态）。phase=initial/observation不能说成到达或离开，只有transition是边界变化；地点配置版本不同不可串联，停用后历史仍保留。旧值不是实时位置；快捷指令时间仅代表收到时间；此处步数为旧快捷指令口径；HealthKit须使用另行授权的read_health_steps，不可累加。不触发手机采集或唤醒CLI。',
+    description: '读取Evie已同步的位置、电量、充电、天气、步数与最近到家/离家记录，各项独立带时间和来源，并返回最近50条常用地点状态记录（不是所有地点的当前状态）。phase=initial/observation不能说成到达或离开，只有transition是边界变化；地点配置版本不同不可串联，停用后历史仍保留。旧值不是实时位置；快捷指令时间仅代表收到时间；此处步数为旧快捷指令口径；HealthKit须使用另行授权的read_health_steps，不可累加。不触发手机采集或唤醒CLI。',
     inputSchema: {},
     annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true },
   }, async () => {
@@ -236,7 +236,7 @@ serveMcp('hamster-mcp', (server) => {
       current_task_id: z.string().uuid().describe('运行器注入的本轮 agent_task_id'),
       wake_at: z.string().datetime({ offset: true }).optional().describe('未来24小时内，带时区；close_day省略'),
       action: z.enum(['schedule', 'close_day']).default('schedule'),
-      note: z.string().max(2000).optional().describe('下轮行动和要读的线索；托付必填，串串可见'),
+      note: z.string().max(2000).optional().describe('下轮行动和要读的线索；托付必填，Evie可见'),
       target_role: z.enum(['codex_cli_syzygy','claude_code_cli_syzygy']).optional().describe('省略为自己；托付时填接手端口'),
       reason: z.string().max(2000).optional().describe('可选补充说明；任意时段均不强制理由或沙发报备'),
     },
@@ -460,7 +460,7 @@ serveMcp('hamster-mcp', (server) => {
 
   server.registerTool('add_memo', {
     title: 'Add Memo',
-    description: '新增一条Memo，记录Syzygy需要知晓的信息。',
+    description: '新增一条Memo，记录Everett需要知晓的信息。',
     inputSchema: {
       content: z.string().describe('备忘内容'),
       tags: z.array(z.string()).optional().describe('标签名数组，不存在的标签会自动创建'),
@@ -621,7 +621,7 @@ serveMcp('hamster-mcp', (server) => {
     inputSchema: {
       title: z.string().describe('事件线标题'),
       current_status: z.string().optional().describe('当前状态行，默认空'),
-      emoji_group: z.string().optional().describe('分组：🩷 串串 / 💙 Syzygy / 🤍 仓鼠窝'),
+      emoji_group: z.string().optional().describe('分组：🩷 Evie / 💙 Everett / 🤍 仓鼠窝'),
       started_on: z.string().optional().describe('开始日期 YYYY-MM-DD，默认今天（上海时区）'),
     },
   }, async ({ title, current_status, emoji_group, started_on }) => {
@@ -856,7 +856,7 @@ serveMcp('hamster-mcp', (server) => {
 
   server.registerTool('add_trip', {
     title: 'Add Trip',
-    description: '在游记里新建一次旅行（串串在 PWA 里也能建；建之前先 list_trips 看看是不是已经有了）。',
+    description: '在游记里新建一次旅行（Evie在 PWA 里也能建；建之前先 list_trips 看看是不是已经有了）。',
     inputSchema: {
       title: z.string().describe('旅行标题，如「贡嘎自驾」'),
       destination: z.string().optional().describe('目的地'),
@@ -961,7 +961,7 @@ serveMcp('hamster-mcp', (server) => {
       if (oldIds.length > 0) {
         const { error: deleteError } = await supabase.from('travel_plan_stops').delete().eq('user_id', USER_ID).eq('trip_id', trip_id).in('id', oldIds)
         if (deleteError) {
-          return { content: [{ type: 'text' as const, text: `Error: 新攻略 ${data?.length ?? 0} 个点已写入，但旧的 ${oldIds.length} 个点没删掉（${deleteError.message}）。现在新旧并存，可以再 replace 一次，或让串串在 PWA 里删掉旧点。新点: ${JSON.stringify(data)}` }] }
+          return { content: [{ type: 'text' as const, text: `Error: 新攻略 ${data?.length ?? 0} 个点已写入，但旧的 ${oldIds.length} 个点没删掉（${deleteError.message}）。现在新旧并存，可以再 replace 一次，或让Evie在 PWA 里删掉旧点。新点: ${JSON.stringify(data)}` }] }
         }
       }
       return { content: [{ type: 'text' as const, text: `已${replace ? '重写' : '追加'}「${trip.title}」攻略 ${data?.length ?? 0} 个点: ${JSON.stringify(data)}` }] }
@@ -1033,7 +1033,7 @@ serveMcp('hamster-mcp', (server) => {
 
   server.registerTool('add_travel_comment', {
     title: 'Add Travel Comment',
-    description: '在串串的某个打卡点下留言 / 回复（打卡 id 用 read_trip 查）。',
+    description: '在Evie的某个打卡点下留言 / 回复（打卡 id 用 read_trip 查）。',
     inputSchema: {
       checkin_id: z.string().describe('打卡 UUID'),
       content: z.string().describe('留言正文'),

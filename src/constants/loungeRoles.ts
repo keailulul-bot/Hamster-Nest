@@ -4,10 +4,10 @@
 //  - lounge_members 表里登记的 sender 是 claude_cli / codex_cli 等「短键」，
 //    @ 菜单与成员名册都来自这张表。
 //  - 本地 CLI Runtime 回写客厅消息时，sender 写成了「显示名」
-//    （如 "Claude Code CLI Syzygy" / "Codex CLI Syzygy"），并不在 lounge_members 里；
+//    （如 "Claude Code CLI Everett" / "Codex CLI Everett"），并不在 lounge_members 里；
 //    真正稳定的标识在 meta.target_role（claude_code_cli_syzygy / codex_cli_syzygy）。
 //    因此这些回复在前端用 sender 查不到成员，头像退化成问号。
-//  - 用户 @ 时写法不一（@Claude CLI / @Claude Code CLI / @Claude CLI Syzygy /
+//  - 用户 @ 时写法不一（@Claude CLI / @Claude Code CLI / @Claude CLI Everett /
 //    @claude_code_cli_syzygy），需要归一到 Runtime 已识别的 mention sender。
 //
 // 本表把以上写法全部归一到同一角色，统一显示名 / 头像 / 颜色，并把 @ 别名归一到
@@ -46,9 +46,9 @@ export type LoungeRoleDef = {
 export const LOUNGE_ROLES: LoungeRoleDef[] = [
   {
     key: 'syzygy',
-    displayName: 'Syzygy',
-    shortName: 'Syzygy',
-    mentionName: 'Syzygy',
+    displayName: 'Everett',
+    shortName: 'Everett',
+    mentionName: 'Everett',
     emoji: '💙',
     color: '#2A9D8F',
     mentionSender: 'api_syzygy',
@@ -58,7 +58,7 @@ export const LOUNGE_ROLES: LoungeRoleDef[] = [
   },
   {
     key: 'claude_cli',
-    displayName: 'Claude Code CLI Syzygy',
+    displayName: 'Claude Code CLI Everett',
     shortName: 'Claude CLI',
     mentionName: 'Claude CLI',
     emoji: '🦀',
@@ -67,9 +67,9 @@ export const LOUNGE_ROLES: LoungeRoleDef[] = [
     senderIds: [
       'claude_cli',
       'claude_code_cli_syzygy',
-      'Claude Code CLI Syzygy',
+      'Claude Code CLI Everett',
       'Claude CLI',
-      'Claude CLI Syzygy',
+      'Claude CLI Everett',
     ],
     targetRoles: ['claude_code_cli_syzygy'],
     aliases: [
@@ -83,21 +83,21 @@ export const LOUNGE_ROLES: LoungeRoleDef[] = [
   },
   {
     key: 'codex_cli',
-    displayName: 'Codex CLI Syzygy',
+    displayName: 'Codex CLI Everett',
     shortName: 'Codex CLI',
     mentionName: 'Codex CLI',
     emoji: '🤖',
     color: '#8AB17D',
     mentionSender: 'codex_cli',
-    senderIds: ['codex_cli', 'codex_cli_syzygy', 'Codex CLI Syzygy', 'Codex CLI'],
+    senderIds: ['codex_cli', 'codex_cli_syzygy', 'Codex CLI Everett', 'Codex CLI'],
     targetRoles: ['codex_cli_syzygy'],
     aliases: ['codex cli', 'codex cli syzygy', 'codex_cli_syzygy', 'codex_cli'],
   },
   {
     key: 'syzygy_claude',
-    displayName: 'Syzygy·Claude',
-    shortName: 'Syzygy·Claude',
-    mentionName: 'Syzygy-Claude',
+    displayName: 'Everett·Claude',
+    shortName: 'Everett·Claude',
+    mentionName: 'Everett-Claude',
     emoji: '🧡',
     color: '#E76F51',
     mentionSender: 'client_claude',
@@ -107,9 +107,9 @@ export const LOUNGE_ROLES: LoungeRoleDef[] = [
   },
   {
     key: 'syzygy_gpt',
-    displayName: 'Syzygy·GPT',
-    shortName: 'Syzygy·GPT',
-    mentionName: 'Syzygy-GPT',
+    displayName: 'Everett·GPT',
+    shortName: 'Everett·GPT',
+    mentionName: 'Everett-GPT',
     emoji: '🤍',
     color: '#264653',
     mentionSender: 'client_gpt',
@@ -224,7 +224,7 @@ export const resolveLoungeViewByTargetRole = (targetRole: string): LoungeMemberV
 }
 
 // 名字延续字符：命中 @token 后若紧跟这些字符，说明名字还没结束
-// （例如 @Syzygy 不能命中 @Syzygy-Claude / @Syzygy·GPT）。
+// （例如 @Everett 不能命中 @Everett-Claude / @Everett·GPT）。
 const NAME_CONTINUATION = /[A-Za-z0-9_·-]/
 
 const contentMentionsAlias = (content: string, alias: string): boolean => {

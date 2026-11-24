@@ -413,8 +413,8 @@ export type EventEntry = {
 export type DiaryVisibility = 'private' | 'shared'
 export type DiaryActivityType = 'free_activity' | 'daily_note'
 
-// Syzygy 日记本：Syzygy 写给自己的账，全体 Syzygy 共写一本，每页带端口署名 author。
-// private 页前端不拉取正文：title / mood / content 为 null——存在可见，内容归 Syzygy 自己。
+// Everett 日记本：Everett 写给自己的账，全体 Everett 共写一本，每页带端口署名 author。
+// private 页前端不拉取正文：title / mood / content 为 null——存在可见，内容归 Everett 自己。
 export type DiaryEntry = {
   id: string
   userId: string
@@ -445,7 +445,7 @@ export type DiaryLock = {
   unlockedAt: string | null
 }
 
-// 留言：串串读过的页下的留言（author=chuanchuan）与各端口的回复。
+// 留言：Evie读过的页下的留言（author=chuanchuan）与各端口的回复。
 export type DiaryComment = {
   id: string
   userId: string
@@ -499,7 +499,7 @@ export type StashComment = {
   updatedAt: string
 }
 
-// 游记：一次旅行 = 攻略区（Syzygy 写的计划停留点，GCJ-02）+ 路线区（串串的打卡，离线补传）。
+// 游记：一次旅行 = 攻略区（Everett 写的计划停留点，GCJ-02）+ 路线区（Evie的打卡，离线补传）。
 // 对比（按计划 / 改道 / 新发现 / 跳过）是读时计算，规则在 hamster-mcp/travel_contract.ts。
 export type TravelTripStatus = 'planning' | 'ongoing' | 'done'
 
@@ -578,7 +578,7 @@ export type TimelineEntry = {
   updatedAt: string
 }
 
-export type TodoCreatedBy = '串串' | 'syzygy'
+export type TodoCreatedBy = 'Evie' | 'syzygy'
 export type TodoStatus = 'pending' | 'in_progress' | 'completed'
 export type TodoType = 'short_term' | 'long_term'
 

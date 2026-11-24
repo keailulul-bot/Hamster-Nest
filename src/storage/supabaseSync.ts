@@ -80,7 +80,7 @@ import type {
 import { supabase } from '../supabase/client'
 import type { Json } from '../supabase/database.types'
 
-const FORUM_USER_AUTHOR_NAME = '串串'
+const FORUM_USER_AUTHOR_NAME = 'Evie'
 
 type SessionRow = {
   id: string
@@ -742,7 +742,7 @@ const mapTodoCategoryRow = (row: TodoCategoryRow): TodoCategory => ({
 })
 
 const normalizeTodoCreatedBy = (createdBy: TodoItemRow['created_by']): TodoCreatedBy => (
-  createdBy === 'chuan' ? '串串' : createdBy
+  createdBy === 'chuan' ? 'Evie' : createdBy
 )
 
 const mapTodoItemRow = (row: TodoItemRow): TodoItem => ({
@@ -2937,10 +2937,10 @@ export const deleteTimelineEntry = async (entryId: string): Promise<void> => {
 }
 
 
-// ── Syzygy 日记本 ──────────────────────────────────────────────────────────
-// Syzygy 写给自己的账。翻开的页取全文；合着的页默认只取署名 / 日期 / 类型，正文不拉——
-// 只有该端口出了谜题且串串已猜对（会话内解锁）时，才按端口把合着页的正文拉下来。
-// 密码是游戏层不是安全层：串串是业主，直读永远可行；谜底存 hash，靠 diary_check_lock RPC 核对。
+// ── Everett 日记本 ──────────────────────────────────────────────────────────
+// Everett 写给自己的账。翻开的页取全文；合着的页默认只取署名 / 日期 / 类型，正文不拉——
+// 只有该端口出了谜题且Evie已猜对（会话内解锁）时，才按端口把合着页的正文拉下来。
+// 密码是游戏层不是安全层：Evie是业主，直读永远可行；谜底存 hash，靠 diary_check_lock RPC 核对。
 
 const DIARY_FULL_COLUMNS = 'id,user_id,author,entry_date,title,content,mood,activity_type,visibility,shared_at,created_at,updated_at'
 const DIARY_STUB_COLUMNS = 'id,user_id,author,entry_date,activity_type,visibility,shared_at,created_at,updated_at'
@@ -3019,7 +3019,7 @@ export const listDiaryEntriesByDate = async (date: string, unlockedAuthors: stri
   ].sort(compareDiaryEntriesAsc)
 }
 
-// 入口只显示篇数：🔒 未公开 N 篇 / 📖 已翻开 M 篇（存在可见，内容归 Syzygy 自己）。
+// 入口只显示篇数：🔒 未公开 N 篇 / 📖 已翻开 M 篇（存在可见，内容归 Everett 自己）。
 export const fetchDiaryVisibilityCounts = async (): Promise<DiaryVisibilityCounts> => {
   if (!supabase) {
     return { privateCount: 0, sharedCount: 0 }
@@ -3086,7 +3086,7 @@ export const listDiaryComments = async (entryIds: string[]): Promise<DiaryCommen
   return (data ?? []).map((row) => mapDiaryCommentRow(row as DiaryCommentRow))
 }
 
-// 串串在网页端留言固定署名 chuanchuan；端口的回复走 MCP。
+// Evie在网页端留言固定署名 chuanchuan；端口的回复走 MCP。
 export const createDiaryComment = async (entryId: string, content: string): Promise<void> => {
   if (!supabase) {
     throw new Error('Supabase 客户端未配置')
@@ -3328,7 +3328,7 @@ export const listStashComments = async (itemIds: string[]): Promise<StashComment
   return (data ?? []).map((row) => mapStashCommentRow(row as StashCommentRow))
 }
 
-// 串串在网页端留言固定署名 chuanchuan；端口的回复走 MCP。
+// Evie在网页端留言固定署名 chuanchuan；端口的回复走 MCP。
 export const createStashComment = async (itemId: string, content: string): Promise<void> => {
   if (!supabase) {
     throw new Error('Supabase 客户端未配置')
@@ -3356,7 +3356,7 @@ export const deleteStashComment = async (commentId: string): Promise<void> => {
 }
 
 // ── 游记 ──────────────────────────────────────────────────────────────────
-// 一次旅行 = 攻略点（Syzygy 写）+ 打卡（串串按）+ 打卡留言。打卡离线优先：client_id 是手机端生成的幂等键，
+// 一次旅行 = 攻略点（Everett 写）+ 打卡（Evie按）+ 打卡留言。打卡离线优先：client_id 是手机端生成的幂等键，
 // 补传用 upsert + ignoreDuplicates，同一次打卡传几遍都只落一条。
 
 const TRAVEL_TRIP_COLUMNS = 'id,user_id,title,destination,start_date,end_date,status,summary,created_by,created_at,updated_at'
@@ -3772,7 +3772,7 @@ export const deleteTravelCheckin = async (checkinId: string): Promise<void> => {
   }
 }
 
-// 串串在网页端留言固定署名 chuanchuan；端口的回复走 MCP（add_travel_comment）。
+// Evie在网页端留言固定署名 chuanchuan；端口的回复走 MCP（add_travel_comment）。
 export const createTravelComment = async (checkinId: string, content: string): Promise<void> => {
   if (!supabase) {
     throw new Error('Supabase 客户端未配置')
@@ -4391,7 +4391,7 @@ export const createAgentCouncilReview = async (payload: {
   }
 }
 
-// 串串拍板：更新主提案 proposal_status（approved 时一并落 executor 指派），并插入 decision 记录留痕。
+// Evie拍板：更新主提案 proposal_status（approved 时一并落 executor 指派），并插入 decision 记录留痕。
 // executor 语义与 MCP 工具 council_decide 一致：只有 codex_cli / claude_code_cli 会唤醒 Mac mini 接单脚本；
 // 缺省 NULL = 不唤醒任何脚本（安全默认）；重复拍板即改派；非 approved 拍板清空 executor。
 export const decideAgentCouncilProposal = async (payload: {
@@ -4422,8 +4422,8 @@ export const decideAgentCouncilProposal = async (payload: {
   const message = note
     ? note
     : nextExecutor
-      ? `串串拍板：${statusLabel}，指派 ${nextExecutor} 执行`
-      : `串串拍板：${statusLabel}`
+      ? `Evie拍板：${statusLabel}，指派 ${nextExecutor} 执行`
+      : `Evie拍板：${statusLabel}`
   const { error: insertError } = await supabase.from('agent_council').insert({
     user_id: userId,
     speaker: payload.speaker ?? 'chuanchuan',

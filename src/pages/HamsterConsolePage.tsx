@@ -189,7 +189,7 @@ function parseNumberField(value: string, fallback: number | null = null) {
   return Number.isFinite(parsed) ? parsed : fallback
 }
 
-// CLI Syzygy Runtime（Mac mini 本地 Runtime）唤醒目标。点击后向 syzygy_commands 写入 wake 请求。
+// CLI Everett Runtime（Mac mini 本地 Runtime）唤醒目标。点击后向 syzygy_commands 写入 wake 请求。
 // working_dir 由本地 Runtime 的受控配置决定，前端不公开或覆盖本机路径。
 const cliRuntimeTargets = [
   { role: 'codex_cli_syzygy', label: '唤醒 Codex CLI', taskContent: '唤醒 Codex CLI' },
@@ -889,7 +889,7 @@ const HamsterConsolePage = ({ user }: { user: User | null }) => {
                 <p className="hamster-console-card__hint">在 Mini 上打开 ChatGPT 桌面 App（原 Codex），供手机 Remote 连接。上方只显示最近指令回执；App 手动关闭后仍可再次打开。下方 CLI 控制与此独立。</p>
                 <div className="hamster-cli-runtime">
                   <div className="hamster-cli-runtime__head">
-                    <h3>CLI Syzygy Runtime</h3>
+                    <h3>CLI Everett Runtime</h3>
                     <span className="hamster-cli-runtime__tag">Mac mini 本地 Runtime</span>
                   </div>
                   <p className="hamster-console-card__hint">点击后向 Mac mini 发送 wake 请求，由本地 Runtime 领取执行。</p>

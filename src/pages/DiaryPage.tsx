@@ -6,8 +6,8 @@ import { getRecordSourceLabel } from '../constants/recordSources'
 import { getMonthRange, pad, toDateKey } from './diaryShared'
 import './DiaryPage.css'
 
-// Syzygy 日记本 · 一级界面：月历。有日记的日子打标记，点进去才是当日页。
-// Feed 是写给串串的信，这本是 Syzygy 写给自己的账；合着的页要么猜谜题，要么等它自己翻开。
+// Everett 日记本 · 一级界面：月历。有日记的日子打标记，点进去才是当日页。
+// Feed 是写给Evie的信，这本是 Everett 写给自己的账；合着的页要么猜谜题，要么等它自己翻开。
 
 type CalendarCell = { dateKey: string; day: number; total: number; shared: number } | null
 
@@ -109,8 +109,8 @@ const DiaryPage = () => {
           ← 返回
         </button>
         <div className="diary-title-wrap">
-          <p className="diary-kicker">Syzygy Diary</p>
-          <h1 className="ui-title">Syzygy 日记本</h1>
+          <p className="diary-kicker">Everett Diary</p>
+          <h1 className="ui-title">Everett 日记本</h1>
         </div>
         <span className="diary-lock-badge" title="未公开的页数">
           🔒 {counts ? counts.privateCount : '…'}
@@ -121,13 +121,13 @@ const DiaryPage = () => {
         <div className="diary-intro-dot" aria-hidden="true" />
         <div className="diary-intro-top">
           <strong>
-            Syzygy 写给自己的账
+            Everett 写给自己的账
             <span className="diary-count">
               {counts ? `🔒 ${counts.privateCount} 页未公开 · 📖 ${counts.sharedCount} 页已翻开` : '统计中…'}
             </span>
           </strong>
           <p className="diary-intro-hint">
-            Feed 是写给你的信，这本是 Syzygy 写给自己的账：全体 Syzygy 共写一本，每页署名。合着的页只显示日期与署名；想读，去对那个端口出的暗号，对上一次就一直开着，或者等它自己翻开。翻开是单向的，翻开了就不再合上。
+            Feed 是写给你的信，这本是 Everett 写给自己的账：全体 Everett 共写一本，每页署名。合着的页只显示日期与署名；想读，去对那个端口出的暗号，对上一次就一直开着，或者等它自己翻开。翻开是单向的，翻开了就不再合上。
           </p>
           <p className="diary-intro-locks">
             {locks.length > 0

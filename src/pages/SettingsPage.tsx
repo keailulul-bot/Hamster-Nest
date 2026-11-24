@@ -1010,7 +1010,7 @@ const SettingsPage = ({
       await onSaveSyzygyPostPrompt(nextPrompt)
       setSyzygyPostStatus('saved')
     } catch (error) {
-      console.warn('保存 Syzygy 发帖提示词失败', error)
+      console.warn('保存 Everett 发帖提示词失败', error)
       setSyzygyPostStatus('error')
     }
   }
@@ -1026,7 +1026,7 @@ const SettingsPage = ({
       await onSaveSyzygyReplyPrompt(nextPrompt)
       setSyzygyReplyStatus('saved')
     } catch (error) {
-      console.warn('保存 Syzygy 回复提示词失败', error)
+      console.warn('保存 Everett 回复提示词失败', error)
       setSyzygyReplyStatus('error')
     }
   }
@@ -2409,7 +2409,7 @@ const SettingsPage = ({
         {syzygySectionExpanded ? (
           <div className="accordion-content">
             <div className="section-title">
-              <h2 className="ui-title">发帖风格（Syzygy Post Prompt）</h2>
+              <h2 className="ui-title">发帖风格（Everett Post Prompt）</h2>
               <p>控制 🤖 发帖按钮的文风与输出约束。</p>
             </div>
             <textarea
@@ -2433,7 +2433,7 @@ const SettingsPage = ({
             </div>
 
             <div className="section-title nested-prompt-title">
-              <h2 className="ui-title">回复风格（Syzygy Reply Prompt）</h2>
+              <h2 className="ui-title">回复风格（Everett Reply Prompt）</h2>
               <p>控制 🤖 AI 回复的语气与长度。</p>
             </div>
             <textarea
@@ -2538,7 +2538,7 @@ const SettingsPage = ({
 
             <div className="section-title nested-prompt-title">
               <h2 className="ui-title">气泡聊天提示词</h2>
-              <p>控制气泡聊天中 Syzygy 的语气与风格，独立于完整聊天的系统提示词。</p>
+              <p>控制气泡聊天中 Everett 的语气与风格，独立于完整聊天的系统提示词。</p>
             </div>
             <textarea
               className="system-prompt"

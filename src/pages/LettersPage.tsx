@@ -459,7 +459,7 @@ const LettersPage = ({
                 S
               </span>
               <div>
-                <p className="letter-sheet-title ui-title">Syzygy</p>
+                <p className="letter-sheet-title ui-title">Everett</p>
                 <p className="letter-sheet-meta">{formatTimestamp(activeLetter.createdAt)}</p>
               </div>
               <div className="letter-sheet-actions">

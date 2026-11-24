@@ -29,7 +29,7 @@ export const buildCurrentShanghaiTimePrompt = (now = new Date()) =>
 // Anthropic `system` block, which precedes the history and would invalidate the
 // history's prompt cache on every turn.
 export const buildCurrentShanghaiTimeNote = (now = new Date()) =>
-  `（运行时附注，不是串串的发言）${buildCurrentShanghaiTimePrompt(now)}`
+  `（运行时附注，不是Evie的发言）${buildCurrentShanghaiTimePrompt(now)}`
 
 export const withCanonicalMessageTimestamp =(content: string, createdAt: string) =>
   `[${formatShanghaiTimestamp(createdAt)}] ${content}`

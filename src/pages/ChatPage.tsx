@@ -584,7 +584,7 @@ const ChatPage = ({
                           disabled={ttsState === 'loading' || isTooLongForTts}
                           aria-label={ttsState === 'playing' ? '暂停语音' : '播放语音'}
                           aria-pressed={ttsState === 'playing'}
-                          title={isTooLongForTts ? '文本超过 2000 字符，无法生成语音' : '播放 Syzygy 回复'}
+                          title={isTooLongForTts ? '文本超过 2000 字符，无法生成语音' : '播放 Everett 回复'}
                         >
                           {ttsState === 'loading' ? (
                             <span className="message-tts-spinner" aria-hidden="true" />

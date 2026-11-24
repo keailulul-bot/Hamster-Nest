@@ -17,9 +17,9 @@ export const TRAVEL_STATUS_OPTIONS: TravelTripStatus[] = ['planning', 'ongoing',
 
 export const TRAVEL_MOODS = ['😊', '🤩', '🥹', '😮‍💨', '🥶', '😴', '🤤', '🏔️']
 
-// 写攻略 / 留言的是谁：串串是 🐹，各端口是 🩵 + 端口名。
+// 写攻略 / 留言的是谁：Evie是 🐹，各端口是 🩵 + 端口名。
 export const getTravelAuthorLabel = (author: string) =>
-  author === 'chuanchuan' ? '🐹 串串' : `🩵 ${getRecordSourceLabel(author)}`
+  author === 'chuanchuan' ? '🐹 Evie' : `🩵 ${getRecordSourceLabel(author)}`
 
 // ── 旅行编辑表单 ───────────────────────────────────────────────────────────
 
@@ -148,7 +148,7 @@ export const createCheckinClientId = () => {
   return `ck-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`
 }
 
-// 传不上去的坏数据（比如旅行在别的设备上被删了）隔离到这里，不删、不重试，留给串串看一眼再清。
+// 传不上去的坏数据（比如旅行在别的设备上被删了）隔离到这里，不删、不重试，留给Evie看一眼再清。
 const FAILED_KEY = 'hamster-nest:travel:failed-checkins:v1'
 
 export type FailedTravelCheckin = { upload: TravelCheckinUpload; error: string; failedAt: string }

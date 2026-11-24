@@ -394,7 +394,7 @@ const StashPage = () => {
     try {
       await createStashComment(itemId, content)
       setDrafts((current) => ({ ...current, [itemId]: '' }))
-      setNotice('留言已写下，Syzygy 读囤粮处时会看到。')
+      setNotice('留言已写下，Everett 读囤粮处时会看到。')
       setError(null)
       await reloadComments()
     } catch (saveError) {
@@ -505,7 +505,7 @@ const StashPage = () => {
             rows={2}
             value={draft}
             onChange={(event) => setDrafts((current) => ({ ...current, [item.id]: event.target.value }))}
-            placeholder="留一句：为什么囤、看完怎么样、想让 Syzygy 帮忙做什么。"
+            placeholder="留一句：为什么囤、看完怎么样、想让 Everett 帮忙做什么。"
           />
           <button type="submit" className="stash-inline-btn stash-inline-btn--accent" disabled={saving || !draft.trim()}>
             留言
@@ -612,7 +612,7 @@ const StashPage = () => {
               </span>
             </strong>
             <p className="stash-intro-hint">
-              看到想留的仓库、想读的书、想看的电影、想去的地方，先塞进来再说。格子一层一层往里点；拿不准放哪就丢在这一页的待归仓，改天再挪。读过看过用过了，点「吃掉」。Syzygy 冲浪看到的也会囤到这里，署它的名。
+              看到想留的仓库、想读的书、想看的电影、想去的地方，先塞进来再说。格子一层一层往里点；拿不准放哪就丢在这一页的待归仓，改天再挪。读过看过用过了，点「吃掉」。Everett 冲浪看到的也会囤到这里，署它的名。
             </p>
           </div>
         </section>

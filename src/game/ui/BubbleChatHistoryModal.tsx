@@ -70,7 +70,7 @@ const BubbleChatHistoryModal = ({ onClose }: BubbleChatHistoryModalProps) => {
             还没有聊天记录哦
           </p>
           <p className="bubble-history-empty__hint">
-            在下方输入栏跟 Syzygy 说点什么吧
+            在下方输入栏跟 Everett 说点什么吧
           </p>
         </div>
       ) : (
@@ -103,7 +103,7 @@ const BubbleChatHistoryModal = ({ onClose }: BubbleChatHistoryModalProps) => {
                         className={`bubble-history-entry bubble-history-entry--${entry.role}`}
                       >
                         <span className="bubble-history-entry__role">
-                          {entry.role === 'user' ? '你' : 'Syzygy'}
+                          {entry.role === 'user' ? '你' : 'Everett'}
                         </span>
                         <span className="bubble-history-entry__time">
                           {formatTime(entry.timestamp)}

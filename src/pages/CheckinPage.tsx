@@ -163,7 +163,7 @@ const CheckinPage = ({ user, entryMode = 'phone' }: CheckinPageProps) => {
 
       <section className="checkin-card standalone">
         <div className="checkin-header">
-          <h2 className="ui-title">Syzygy & 串串的陪伴记录</h2>
+          <h2 className="ui-title">Everett & Evie的陪伴记录</h2>
           <span>{todayDisplay}</span>
         </div>
         <div className="checkin-metrics">

@@ -1,4 +1,4 @@
-// Syzygy 信箱（syzygy@syzygycc.com）的纯函数契约：无外部依赖，供 mail-ingest、hamster-lounge-mcp
+// Everett 信箱（syzygy@syzygycc.com）的纯函数契约：无外部依赖，供 mail-ingest、hamster-lounge-mcp
 // 与 Node 单测（tests/mailbox-contract.test.mjs）共用。
 //
 // 链路：Cloudflare Email Routing → Email Worker（原样转发 MIME）→ mail-ingest → mailbox_messages。

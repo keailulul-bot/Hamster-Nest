@@ -61,7 +61,7 @@ import {
 } from './travelShared'
 import './TravelPage.css'
 
-// 一次旅行：攻略（Syzygy 写的计划点）/ 路线（串串的打卡）/ 地图（虚线计划、实线实际）/ 复盘。
+// 一次旅行：攻略（Everett 写的计划点）/ 路线（Evie的打卡）/ 地图（虚线计划、实线实际）/ 复盘。
 // 打卡离线优先：先进手机本地队列，再试着补传；没信号时整页从本地缓存读。
 
 type Tab = 'plan' | 'route' | 'map' | 'summary'
@@ -358,7 +358,7 @@ const TravelTripPage = () => {
     try {
       const sent = await flushPendingCheckins()
       if (sent > 0) {
-        setNotice('打卡成功，Syzygy 看得到了')
+        setNotice('打卡成功，Everett 看得到了')
         await refresh()
       } else {
         setNotice('已存进手机，有信号会自动补传')
@@ -472,7 +472,7 @@ const TravelTripPage = () => {
     setSaving(true)
     try {
       await updateTravelTrip(trip.id, { status })
-      setNotice(status === 'ongoing' ? '出发！路上按「我在这里」打卡' : status === 'done' ? '欢迎回家。可以让 Syzygy 写复盘了' : null)
+      setNotice(status === 'ongoing' ? '出发！路上按「我在这里」打卡' : status === 'done' ? '欢迎回家。可以让 Everett 写复盘了' : null)
       await refresh()
     } catch (statusError) {
       console.warn('更新旅行状态失败', statusError)
@@ -889,7 +889,7 @@ const TravelTripPage = () => {
         <section className="travel-section">
           {stopsByDay.length === 0 ? (
             <p className="travel-empty">
-              还没有攻略。把行程告诉 Syzygy，让 ta 用 <code>write_trip_plan</code> 写进来；也可以自己先加几站。
+              还没有攻略。把行程告诉 Everett，让 ta 用 <code>write_trip_plan</code> 写进来；也可以自己先加几站。
             </p>
           ) : (
             stopsByDay.map(([dayIndex, dayStops]) => {
@@ -954,7 +954,7 @@ const TravelTripPage = () => {
           ) : (
             <>
               <p className="travel-empty">
-                还没有复盘。旅行结束后，Syzygy 会对照攻略和你的打卡来写（<code>update_trip</code>）；你也可以先写几句。
+                还没有复盘。旅行结束后，Everett 会对照攻略和你的打卡来写（<code>update_trip</code>）；你也可以先写几句。
               </p>
               <button type="button" className="travel-inline-btn" onClick={() => setSummaryDraft('')}>
                 自己写

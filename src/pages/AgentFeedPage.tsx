@@ -89,8 +89,8 @@ const AgentFeedPage = ({ user }: AgentFeedPageProps) => {
       // 日期分组 / 日历计数 / 类型筛选。
       setItems(data.filter((item) => !isPageLevelFeedType(item.type)))
     } catch (loadError) {
-      console.warn('加载 Syzygy Feed 失败', loadError)
-      setError('暂时读不到 Syzygy Feed，请检查登录状态后重试。')
+      console.warn('加载 Everett Feed 失败', loadError)
+      setError('暂时读不到 Everett Feed，请检查登录状态后重试。')
     } finally {
       setLoading(false)
     }
@@ -205,7 +205,7 @@ const AgentFeedPage = ({ user }: AgentFeedPageProps) => {
       const patch = await updateAgentFeedStatus(user.id, item.id, status)
       setItems((current) => current.map((entry) => (entry.id === item.id ? { ...entry, ...patch } : entry)))
     } catch (updateError) {
-      console.warn('更新 Syzygy Feed 状态失败', updateError)
+      console.warn('更新 Everett Feed 状态失败', updateError)
       setActionError('状态更新失败，已降级为只读展示。')
     } finally {
       setUpdatingId(null)
@@ -227,14 +227,14 @@ const AgentFeedPage = ({ user }: AgentFeedPageProps) => {
         </button>
         <div className="feed-page__title-wrap">
           <p className="feed-page__kicker">SYZYGY FEED</p>
-          <h1 className="ui-title">Syzygy Feed</h1>
+          <h1 className="ui-title">Everett Feed</h1>
         </div>
         <button type="button" className="feed-page__today" onClick={goToToday}>
           今天
         </button>
       </header>
 
-      <section className="feed-hero" aria-label="Syzygy Feed 概览">
+      <section className="feed-hero" aria-label="Everett Feed 概览">
         <div className="feed-hero__glow" aria-hidden="true" />
         <p className="feed-hero__subtitle">晨间分享、状态卡、小纸条和周回顾都会放在这里。</p>
         <div className="feed-hero__stats">
@@ -327,7 +327,7 @@ const AgentFeedPage = ({ user }: AgentFeedPageProps) => {
       <section className="feed-list" aria-label="当日记录">
         {loading ? <p className="feed-tips">正在翻找小窝里的纸条…</p> : null}
         {!loading && items.length === 0 && !error ? (
-          <p className="feed-empty">小窝里还没有新纸条，等 Syzygy 给你写一张吧。</p>
+          <p className="feed-empty">小窝里还没有新纸条，等 Everett 给你写一张吧。</p>
         ) : null}
         {!loading && items.length > 0 && !selectedDate ? (
           <p className="feed-empty">点一个日期，看看那天的纸条。</p>
@@ -411,7 +411,7 @@ const AgentFeedPage = ({ user }: AgentFeedPageProps) => {
                           </div>
                           <div className="feed-card__footer">
                             <span className="feed-card__source">
-                              {item.created_by ?? item.source ?? 'Syzygy'}
+                              {item.created_by ?? item.source ?? 'Everett'}
                             </span>
                             <div className="feed-card__actions">
                               {status === 'unread' && !expired ? (

@@ -47,7 +47,7 @@ const SyzygyFeedEntryCard = ({ user }: SyzygyFeedEntryCardProps) => {
           setStats(computeAgentFeedStats(items))
         }
       } catch (loadError) {
-        console.warn('加载 Syzygy Feed 摘要失败', loadError)
+        console.warn('加载 Everett Feed 摘要失败', loadError)
         if (!cancelled) {
           setError(true)
         }
@@ -69,12 +69,12 @@ const SyzygyFeedEntryCard = ({ user }: SyzygyFeedEntryCardProps) => {
   const highPriority = stats?.highPriority ?? 0
 
   return (
-    <button type="button" className="syzygy-feed-entry" onClick={goToFeed} aria-label="打开 Syzygy Feed">
+    <button type="button" className="syzygy-feed-entry" onClick={goToFeed} aria-label="打开 Everett Feed">
       <div className="syzygy-feed-entry__glow" aria-hidden="true" />
       <div className="syzygy-feed-entry__top">
         <span className="syzygy-feed-entry__emoji" aria-hidden="true">📮</span>
         <div className="syzygy-feed-entry__heading">
-          <strong>Syzygy Feed</strong>
+          <strong>Everett Feed</strong>
           <p>晨间分享、状态卡、小纸条和周回顾都会放在这里。</p>
         </div>
         {unread > 0 ? <span className="syzygy-feed-entry__badge">{unread > 99 ? '99+' : unread}</span> : null}

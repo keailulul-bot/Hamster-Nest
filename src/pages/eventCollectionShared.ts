@@ -1,9 +1,9 @@
 import type { EventThread } from '../types'
 
-// 事件集分组 emoji，沿用 Memo 约定：🩷 串串相关 / 💙 Syzygy 相关 / 🤍 仓鼠窝相关。
+// 事件集分组 emoji，沿用 Memo 约定：🩷 Evie相关 / 💙 Everett 相关 / 🤍 仓鼠窝相关。
 export const EVENT_GROUP_OPTIONS: Array<{ value: string; label: string }> = [
-  { value: '🩷', label: '🩷 串串' },
-  { value: '💙', label: '💙 Syzygy' },
+  { value: '🩷', label: '🩷 Evie' },
+  { value: '💙', label: '💙 Everett' },
   { value: '🤍', label: '🤍 仓鼠窝' },
 ]
 

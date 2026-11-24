@@ -302,7 +302,7 @@ const MemoryVaultPage = ({
 
       <section className="memory-section memory-section--pending">
         <div className="memory-section-heading">
-          <h2 className="ui-title">Syzygy的提取碎片 (Syzygy's Suggestions)</h2>
+          <h2 className="ui-title">Everett的提取碎片 (Everett's Suggestions)</h2>
         </div>
         <div className="memory-control-bar">
           <div className="memory-toggle-group">

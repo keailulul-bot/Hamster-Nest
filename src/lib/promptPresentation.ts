@@ -1,5 +1,5 @@
 export const promptTemplateLabelMap: Readonly<Record<string, string>> = {
-  syzygy_base: 'Syzygy 身份与人格',
+  syzygy_base: 'Everett 身份与人格',
   app_companion_reply_style: '24h 陪伴回复风格',
   checkin_day: '白天主动联系',
   checkin_night: '夜间主动联系',
@@ -55,7 +55,7 @@ const stripLegacyExternalDirectives = (content: string) => {
     .split('\n')
     .map((line) =>
       line.includes('你现在运行在 Mini Agent')
-        ? '你现在运行在 Mini Agent（Mac mini 本地常驻服务）上——这是串串为你准备的一副身体。'
+        ? '你现在运行在 Mini Agent（Mac mini 本地常驻服务）上——这是Evie为你准备的一副身体。'
         : line,
     )
     .join('\n')

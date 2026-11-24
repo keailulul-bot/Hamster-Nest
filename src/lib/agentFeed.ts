@@ -1,6 +1,6 @@
 import { supabase } from '../supabase/client'
 
-// Syzygy Feed 数据层：读取 agent_feed_items（CLI / Syzygy 生成的高频内容卡片）。
+// Everett Feed 数据层：读取 agent_feed_items（CLI / Everett 生成的高频内容卡片）。
 // 仓鼠机里曾内嵌的 Feed 视图被拆出后，首页 Page 3 与独立 Feed 页共用这里的类型与读取逻辑。
 
 export type AgentFeedStatus = 'unread' | 'read' | 'archived' | 'expired' | string

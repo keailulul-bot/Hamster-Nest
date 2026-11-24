@@ -93,7 +93,7 @@ const GameBubbleInputBar = ({ onSend, onOpenHistory, disabled }: GameBubbleInput
         <input
           type="text"
           className="game-bubble-input-bar__input"
-          placeholder="跟 Syzygy 说点什么..."
+          placeholder="跟 Everett 说点什么..."
           value={draft}
           onChange={(event) => setDraft(event.target.value)}
           onKeyDown={handleKeyDown}

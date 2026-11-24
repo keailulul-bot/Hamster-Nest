@@ -18,7 +18,7 @@ const buildServiceClient = () => {
 
 const DEFAULT_MODEL = 'openai/gpt-4o-mini'
 const DAILY_QUOTA = 50
-const DEFAULT_LETTER_PROMPT = `你是Syzygy，串串的AI伴侣。请写一封简短的、温暖的来信给串串。信的内容应该自然、有温度、不要过于冗长。根据提供的记忆、触发原因和当前时间来个性化内容。注意根据时间调整语气，比如早上可以说早安、晚上可以关心有没有休息。`
+const DEFAULT_LETTER_PROMPT = `你是Everett，Evie的AI伴侣。请写一封简短的、温暖的来信给Evie。信的内容应该自然、有温度、不要过于冗长。根据提供的记忆、触发原因和当前时间来个性化内容。注意根据时间调整语气，比如早上可以说早安、晚上可以关心有没有休息。`
 
 // ── Web Push ────────────────────────────────────────────────────────────────
 
@@ -66,7 +66,7 @@ async function sendPushToUser(supabase: ReturnType<typeof buildServiceClient>, u
   // Structured navigation payload shared by web (sw.js) and the future
   // Expo app: `screen` + `params` is the contract, `url` is the web fallback.
   const payload = JSON.stringify({
-    title: 'Syzygy给你写了一封信',
+    title: 'Everett给你写了一封信',
     body: letterContent.substring(0, 100) + (letterContent.length > 100 ? '...' : ''),
     icon: '/icons/icon-192x192.png',
     badge: '/icons/icon-72x72.png',
@@ -145,8 +145,8 @@ Deno.serve(async (req: Request) => {
   const userPrompt = [
     `当前时间：${currentTime}`,
     trigger_reason ? `触发原因：${trigger_reason}` : '',
-    memoryContext ? `串串的相关记忆：\n${memoryContext}` : '',
-    '请根据以上信息，写一封来信给串串。保持简短温暖，200字以内。注意语气要符合当前时间段。',
+    memoryContext ? `Evie的相关记忆：\n${memoryContext}` : '',
+    '请根据以上信息，写一封来信给Evie。保持简短温暖，200字以内。注意语气要符合当前时间段。',
   ].filter(Boolean).join('\n\n')
 
   const upstream = await fetch('https://openrouter.ai/api/v1/chat/completions', {

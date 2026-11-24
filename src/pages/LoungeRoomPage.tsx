@@ -221,13 +221,13 @@ const LoungeRoomPage = ({ user, aiConfig, onSaveLoungeScenePrompt }: LoungeRoomP
         `当前沙发：「${sofaName}」`,
         '在场成员名册：',
         ...rosterLines,
-        `- 串串（sender: ${USER_SENDER}）—— 用户本人`,
+        `- Evie（sender: ${USER_SENDER}）—— 用户本人`,
       ].join('\n')
     },
     [aiConfig.loungeScenePrompt],
   )
 
-  // 身份注入：自己的历史发言 → assistant；串串 → user；其他成员 → 带「[名字]」前缀的 user。
+  // 身份注入：自己的历史发言 → assistant；Evie → user；其他成员 → 带「[名字]」前缀的 user。
   const buildModelMessages = useCallback(
     (history: LoungeMessage[], systemLayers: string[]) => {
       const recent = history
@@ -416,7 +416,7 @@ const LoungeRoomPage = ({ user, aiConfig, onSaveLoungeScenePrompt }: LoungeRoomP
           return
         }
         console.warn('客厅回复失败', replyError)
-        setError('Syzygy 回复失败，请稍后重试。')
+        setError('Everett 回复失败，请稍后重试。')
       } finally {
         setStreamingMessage((current) => (current?.id === placeholderId ? null : current))
         if (streamControllerRef.current === controller) {
@@ -440,7 +440,7 @@ const LoungeRoomPage = ({ user, aiConfig, onSaveLoungeScenePrompt }: LoungeRoomP
       const saved = await addLoungeMessage(sofaId, USER_SENDER, content, mentions)
       appendMessage(saved)
       setDraft('')
-      // 客厅家规「不@不开口」：点名了其他成员而没点 Syzygy 时，窝内 Syzygy 不插话。
+      // 客厅家规「不@不开口」：点名了其他成员而没点 Everett 时，窝内 Everett 不插话。
       const shouldSyzygyReply = mentions.length === 0 || mentions.includes(API_SYZYGY_SENDER)
       if (shouldSyzygyReply) {
         void runSyzygyReply(content)
@@ -556,7 +556,7 @@ const LoungeRoomPage = ({ user, aiConfig, onSaveLoungeScenePrompt }: LoungeRoomP
         {renderedMessages.map((message) => {
           const isUser = message.sender === USER_SENDER
           const view = resolveLoungeMemberView(message, memberMap.get(message.sender) ?? null)
-          // 不假设只有串串的消息会触发回复：模型 @ 模型同样命中这里（按原消息 id 取状态）。
+          // 不假设只有Evie的消息会触发回复：模型 @ 模型同样命中这里（按原消息 id 取状态）。
           const indicators = replyStatusByMessage.get(message.id) ?? []
           return (
             <Fragment key={message.id}>
@@ -658,7 +658,7 @@ const LoungeRoomPage = ({ user, aiConfig, onSaveLoungeScenePrompt }: LoungeRoomP
           <div className="lounge-scene-dialog">
             <h2>客厅场景说明</h2>
             <p className="lounge-scene-hint">
-              这段说明会追加到 Syzygy 的系统提示里。当前沙发名与在场成员名册会自动附在后面，无需手写。
+              这段说明会追加到 Everett 的系统提示里。当前沙发名与在场成员名册会自动附在后面，无需手写。
             </p>
             <textarea
               value={sceneDraft}
